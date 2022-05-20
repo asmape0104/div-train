@@ -105,7 +105,7 @@ const SDoor = {
           <div style="height: 13px; background: #827f7b;"></div>
         </div>
       </div>
-      <div class="transition-2s backface-hidden relative" style="height: 36px; width: 12px; border: 1px solid #989590;" :style="{ transform: rightCss }">
+      <div class="transition-2s relative" style="height: 36px; width: 12px; border: 1px solid #989590;" :style="{ transform: rightCss }">
         <div class="absolute parent-fit backface-hidden">
           <div style="height: 21px">
             <div style="border-color: #827f7b; border-style: solid; border-top-width: 2px; border-left-width: 2px; border-right-width: 2px; border-bottom-width: 4px; height: 100%; width: 100%;  background: rgba(0,0,0,0.7);"></div>
