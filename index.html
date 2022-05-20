@@ -5,61 +5,7 @@
     <title>div要素だけで電車を作る</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <script src="https://unpkg.com/vue@next"></script>
-    <style>
-      #app * {
-        transform-style: preserve-3d;
-        box-sizing: border-box;
-      }
-      .flex {
-        display: flex;
-      }
-      .space-between {
-        justify-content: space-between;
-      }
-      .align-end {
-        align-items: flex-end;
-      }
-      .transition-03s {
-        transition: all 0.3s;
-      }
-      .transition-2s {
-        transition: all 2s;
-      }
-      .absolute {
-        position: absolute;
-      }
-      .fixed {
-        position: fixed;
-      }
-      .parent-fit {
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-      }
-      .fluid {
-        width: 100%;
-      }
-      .wood {
-        background:
-          repeating-radial-gradient(
-            circle at -1000% 0%,
-            rgba(116, 77, 48, 0.7),
-            #573216 7.5%,
-            rgba(116, 77, 48, 0.9) 10%
-          ),
-          repeating-radial-gradient(
-            circle at -1000% 0%,
-            #573216,
-            #573216 0.1%,
-            #744d30 0.4%,
-            #744d30 0.5%
-          );
-        height: 52px;
-        width: 9px;
-        margin: 0 8px;
-      }
-    </style>
+    <link rel="stylesheet" href="./main.css" />
   </head>
   <body style="background: #eef">
     <div id="app">
@@ -239,9 +185,13 @@
       </div>
       <div class="flex" style="position: fixed; bottom: 0; left: 0;">
         <div>
-          カメラ<br>
-          <input type="range" min="-180" max="180" v-model.number="cameraDeg" /><br>
-          <input type="range" min="45" max="89" v-model.number="cameraDeg2" />
+          <div>
+            カメラ<br>
+            <input type="range" min="-180" max="180" v-model.number="cameraDeg" /><br>
+            <input type="range" min="45" max="89" v-model.number="cameraDeg2" />
+          </div>
+          拡大率<br>
+          <input type="range" min="0.5" max="2" step="0.05" v-model.number="cameraScale" />
         </div>
         <div>
           <div>

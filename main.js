@@ -135,12 +135,13 @@ const App = {
   setup() {
     const cameraDeg = ref(-20)
     const cameraDeg2 = ref(80)
+    const cameraScale = ref(1)
     const trainPos = ref(0)
 
     const frontDoorOpen = ref(false)
     const backDoorOpen = ref(false)
     const lineColor = ref('#ff0000')
-    const cameraTransform = computed(() => `rotateX(${cameraDeg2.value}deg) rotateZ(${cameraDeg.value}deg)`)
+    const cameraTransform = computed(() => `scale3d(${cameraScale.value}, ${cameraScale.value}, ${cameraScale.value}) rotateX(${cameraDeg2.value}deg) rotateZ(${cameraDeg.value}deg)`)
 
     const voices = ref(window.speechSynthesis.getVoices())
     const selectedVoiceName = ref('')
@@ -175,6 +176,7 @@ const App = {
     return {
       cameraDeg,
       cameraDeg2,
+      cameraScale,
       trainPos,
       frontDoorOpen,
       backDoorOpen,

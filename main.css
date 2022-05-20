@@ -1,0 +1,53 @@
+#app * {
+  transform-style: preserve-3d;
+  box-sizing: border-box;
+}
+.flex {
+  display: flex;
+}
+.space-between {
+  justify-content: space-between;
+}
+.align-end {
+  align-items: flex-end;
+}
+.transition-03s {
+  transition: all 0.3s;
+}
+.transition-2s {
+  transition: all 2s;
+}
+.absolute {
+  position: absolute;
+}
+.fixed {
+  position: fixed;
+}
+.parent-fit {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.fluid {
+  width: 100%;
+}
+.wood {
+  background:
+    repeating-radial-gradient(
+      circle at -1000% 0%,
+      rgba(116, 77, 48, 0.7),
+      #573216 7.5%,
+      rgba(116, 77, 48, 0.9) 10%
+    ),
+    repeating-radial-gradient(
+      circle at -1000% 0%,
+      #573216,
+      #573216 0.1%,
+      #744d30 0.4%,
+      #744d30 0.5%
+    );
+  height: 52px;
+  width: 9px;
+  margin: 0 8px;
+}
