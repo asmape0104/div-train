@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <script src="https://unpkg.com/vue@next"></script>
     <link rel="stylesheet" href="./main.css" />
+    <link rel="stylesheet" href="./lcd.css" />
   </head>
   <body style="background: #eef">
     <div id="app">
@@ -179,6 +180,30 @@
             >
               <template v-for="name in ['bottom', 'front', 'back', 'left', 'right']" #[name]>
                 <div style="width: 100%; height: 100%; background: #111"></div>
+              </template>
+            </s-cube>
+          </div>
+          <div id="lcd">
+            <s-cube
+              :xl="12"
+              :yl="72"
+              :zl="20.33"
+              :x="200"
+              :y="-66"
+              :z="80"
+            >
+              <template #left>
+                <div class="absolute" style="left: 0; top: 0; transform: scale(0.1666); transform-origin: top left;">
+                  <s-lcd></s-lcd>
+                </div>
+              </template>
+              <template #right>
+                <div class="absolute" style="left: 0; top: 0; transform: scale(0.1666); transform-origin: top left;">
+                  <s-lcd reverse></s-lcd>
+                </div>
+              </template>
+              <template v-for="name in ['front', 'back', 'top', 'bottom']" #[name]>
+                <div class="absolute parent-fit" style="background: #333; border: 0.5px solid #777;"></div>
               </template>
             </s-cube>
           </div>

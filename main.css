@@ -17,6 +17,9 @@
 .transition-2s {
   transition: all 2s;
 }
+.relative {
+  position: relative;
+}
 .absolute {
   position: absolute;
 }
@@ -31,6 +34,12 @@
 }
 .fluid {
   width: 100%;
+}
+.full-height {
+  height: 100%;
+}
+.backface-hidden {
+  backface-visibility: hidden;
 }
 .wood {
   background:

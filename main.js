@@ -25,6 +25,8 @@ const generateAnnounce = () => {
     `まもなく、${trackNumber}番線に、久里浜行きが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。この電車は、11両です。`,
     `まもなく、${trackNumber}番線に、快速、君津行きが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。この電車は、15両です。`,
     `まもなく、${trackNumber}番線に、快速、成田空港、成東行きが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。この電車は、15両です。`,
+    `Your attention please. The rapid train, bound for, Kazusa-Ichinomiya, is arriving at, track ${trackNumber}. Please stand behind the yellow warning blocks.`,
+    `Your attention please. The local train, bound for, Odawara, is arriving at, track ${trackNumber}. Please stand behind the yellow warning blocks.`
   ]
 
   return messages[Math.floor(Math.random() * messages.length)]
@@ -88,19 +90,35 @@ const SDoor = {
   },
   template: `
     <div class="flex">
-      <div class="transition-2s" style="height: 36px; width: 12px; border: 1px solid #989590;" :style="{ transform: leftCss }">
-        <div style="height: 21px">
-          <div style="border-color: #827f7b; border-style: solid; border-top-width: 2px; border-left-width: 2px; border-right-width: 2px; border-bottom-width: 4px; height: 100%; width: 100%;  background: rgba(0,0,0,0.7);"></div>
+      <div class="transition-2s relative" style="height: 36px; width: 12px; border: 1px solid #989590;" :style="{ transform: leftCss }">
+        <div class="absolute parent-fit backface-hidden">
+          <div style="height: 21px">
+            <div style="border-color: #827f7b; border-style: solid; border-top-width: 2px; border-left-width: 2px; border-right-width: 2px; border-bottom-width: 4px; height: 100%; width: 100%;  background: rgba(0,0,0,0.7);"></div>
+          </div>
+          <div style="height: 7px; background: var(--line-color);"></div>
+          <div style="height: 6px; background: #827f7b;"></div>
         </div>
-        <div style="height: 7px; background: var(--line-color);"></div>
-        <div style="height: 6px; background: #827f7b;"></div>
+        <div class="absolute parent-fit backface-hidden" style="transform: rotateY(180deg);">
+          <div style="height: 21px">
+            <div style="border-color: #827f7b; border-style: solid; border-top-width: 2px; border-left-width: 2px; border-right-width: 2px; border-bottom-width: 4px; height: 100%; width: 100%;  background: rgba(0,0,0,0.2);"></div>
+          </div>
+          <div style="height: 13px; background: #827f7b;"></div>
+        </div>
       </div>
-      <div class="transition-2s" style="height: 36px; width: 12px; border: 1px solid #989590;" :style="{ transform: rightCss }">
-        <div style="height: 21px">
-          <div style="border-color: #827f7b; border-style: solid; border-top-width: 2px; border-left-width: 2px; border-right-width: 2px; border-bottom-width: 4px; height: 100%; width: 100%;  background: rgba(0,0,0,0.7);"></div>
+      <div class="transition-2s backface-hidden relative" style="height: 36px; width: 12px; border: 1px solid #989590;" :style="{ transform: rightCss }">
+        <div class="absolute parent-fit backface-hidden">
+          <div style="height: 21px">
+            <div style="border-color: #827f7b; border-style: solid; border-top-width: 2px; border-left-width: 2px; border-right-width: 2px; border-bottom-width: 4px; height: 100%; width: 100%;  background: rgba(0,0,0,0.7);"></div>
+          </div>
+          <div style="height: 7px; background: var(--line-color);"></div>
+          <div style="height: 6px; background: #827f7b;"></div>
         </div>
-        <div style="height: 7px; background: var(--line-color);"></div>
-        <div style="height: 6px; background: #827f7b;"></div>
+        <div class="absolute parent-fit backface-hidden" style="transform: rotateY(180deg);">
+          <div style="height: 21px">
+            <div style="border-color: #827f7b; border-style: solid; border-top-width: 2px; border-left-width: 2px; border-right-width: 2px; border-bottom-width: 4px; height: 100%; width: 100%;  background: rgba(0,0,0,0.2);"></div>
+          </div>
+          <div style="height: 13px; background: #827f7b;"></div>
+        </div>
       </div>
     </div>
   `
@@ -126,11 +144,59 @@ const SWindow = {
   `
 }
 
+const SLcd = {
+  props: {
+    reverse: {
+      type: Boolean,
+      default: false
+    }
+  },
+  template: `
+  <div class="lcd" :class="{reverse: reverse}">
+    <div class="lcd-left">
+      <div class="lcd-left-row row-colored">
+        <div class="line">
+          <div class="jk-icon">JK</div>
+          <div class="line-name">京浜東北線</div>
+        </div>
+        <div class="forward">横浜・関内方面</div>
+      </div>
+      <div class="lcd-sep"></div>
+      <div class="lcd-left-row">
+        <div class="type">各駅停車</div>
+        <div class="time">13:10</div>
+        <div class="for">
+          <div class="jk-icon-small">
+            <div class="jk-text">JK</div>
+            <div class="jk-number">01</div>
+          </div>
+          <div class="for-text">大船</div>
+        </div>
+      </div>
+      <div class="lcd-sep"></div>
+      <div class="lcd-left-row">
+        <div class="type">各駅停車</div>
+        <div class="time">13:15</div>
+        <div class="for">
+          <div class="jk-icon-small">
+            <div class="jk-text">JK</div>
+            <div class="jk-number">06</div>
+          </div>
+          <div class="for-text">桜木町</div>
+        </div>
+      </div>
+    </div>
+    <div class="lcd-right" :class="{reverse: reverse}">3</div>
+  </div>
+  `
+}
+
 const App = {
   components: {
     SCube,
     SDoor,
-    SWindow
+    SWindow,
+    SLcd
   },
   setup() {
     const cameraDeg = ref(-20)
