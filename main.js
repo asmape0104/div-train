@@ -182,7 +182,7 @@ const SLcd = {
             <div class="jk-text">JK</div>
             <div class="jk-number">06</div>
           </div>
-          <div class="for-text">桜木町</div>
+          <div class="for-text">磯子</div>
         </div>
       </div>
     </div>
