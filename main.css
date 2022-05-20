@@ -1,4 +1,4 @@
-#app * {
+#canvas, #canvas * {
   transform-style: preserve-3d;
   box-sizing: border-box;
 }
