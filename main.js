@@ -191,12 +191,59 @@ const SLcd = {
   `
 }
 
+const SClock = {
+  setup() {
+    const getRatio = (i) => {
+      return (-Math.cos(Math.PI * i / 3) + 1) / 2
+    }
+    const getTimeTransform = (i) => {
+      return `translate(-50%, -50%) translate(${((38 + 10 * getRatio(i)) * Math.sin(Math.PI * i / 6)).toFixed(3)}px, ${(-(38 + 10 * getRatio(i)) * Math.cos(Math.PI * i / 6)).toFixed(3)}px)`
+    }
+
+    const hour = ref(0)
+    const minute = ref(0)
+
+    onMounted(() => {
+      window.setInterval(() => {
+        const now = new Date()
+        hour.value = now.getHours()
+        minute.value = now.getMinutes()
+      }, 1000)
+    })
+
+    return {
+      getTimeTransform,
+      hour,
+      minute
+    }
+  },
+  template: `
+    <div class="relative" style="width: 132px; height: 96px; background: rgb(49, 80, 57); color: rgb(216, 250, 139); font-family: 'Noto Sans JP', sans-serif; font-size: 12px;">
+      <div
+        v-for="i in 12"
+        class="absolute"
+        style="top: 50%; left: 50%;"
+        :style="{transform: getTimeTransform(i) }"
+      >
+        {{ i }}
+      </div>
+      <div class="absolute parent-fit" :style="{ transform: \`translateZ(3px) rotateZ(\${minute * 6}deg)\` }">
+        <div class="absolute" style="background: rgb(216, 250, 139);top: 10px; left: calc(50% - 2px); width: 4px; height: 52px;"></div>
+      </div>
+      <div class="absolute parent-fit" :style="{ transform: \`translateZ(2px) rotateZ(\${(hour * 30) + (minute / 2)}deg)\` }">
+        <div class="absolute" style="background: rgb(216, 250, 139);top: 20px; left: calc(50% - 2px); width: 4px; height: 42px;"></div>
+      </div>
+    </div>
+  `
+}
+
 const App = {
   components: {
     SCube,
     SDoor,
     SWindow,
-    SLcd
+    SLcd,
+    SClock
   },
   setup() {
     const cameraDeg = ref(-20)

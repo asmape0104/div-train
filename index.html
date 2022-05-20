@@ -7,6 +7,9 @@
     <script src="https://unpkg.com/vue@next"></script>
     <link rel="stylesheet" href="./main.css" />
     <link rel="stylesheet" href="./lcd.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
   </head>
   <body style="background: #eef">
     <div id="app">
@@ -208,6 +211,49 @@
                 </template>
               </s-cube>
             </div>
+            <div id="clock">
+              <s-cube
+                :xl="12"
+                :yl="26"
+                :zl="20.33"
+                :x="300"
+                :y="-87"
+                :z="80"
+              >
+                <template v-for="name in ['front', 'back', 'top', 'bottom']" #[name]>
+                  <div class="absolute parent-fit" style="background: #333; border: 0.5px solid #555;"></div>
+                </template>
+                <template v-for="name in ['left', 'right']" #[name]>
+                  <div class="absolute parent-fit" style="border-color: #333; border-style: solid; border-width: 2.165px 2px;"></div>
+                </template>
+              </s-cube>
+              <s-cube
+                :xl="12"
+                :yl="22"
+                :zl="16"
+                :x="300"
+                :y="-87"
+                :z="80"
+              >
+                <template v-for="name in ['front', 'back', 'top', 'bottom']" #[name]>
+                  <div class="absolute parent-fit" style="background: #333; border: 0.5px solid #555;"></div>
+                </template>
+              </s-cube>
+              <s-cube
+                :xl="6"
+                :yl="22"
+                :zl="16"
+                :x="300"
+                :y="-87"
+                :z="80"
+              >
+                <template v-for="name in ['left', 'right']" #[name]>
+                  <div class="absolute" style="left: 0; top: 0; transform: scale(0.1666); transform-origin: top left;">
+                    <s-clock></s-clock>
+                  </div>
+                </template>
+              </s-cube>
+            </div>
           </div>
         </div>
       </div>
@@ -219,7 +265,7 @@
             <input type="range" min="45" max="89" v-model.number="cameraDeg2" />
           </div>
           拡大率<br>
-          <input type="range" min="0.5" max="2" step="0.05" v-model.number="cameraScale" />
+          <input type="range" min="0.5" max="3" step="0.05" v-model.number="cameraScale" />
         </div>
         <div>
           <div>
@@ -262,6 +308,8 @@
             <button @click="playAnnounce">再生</button>
             <button @click="stopAnnounce">停止</button>
           </div>
+        </div>
+        <div>
         </div>
       </div>
     </div>
