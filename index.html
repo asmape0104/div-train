@@ -254,6 +254,82 @@
                 </template>
               </s-cube>
             </div>
+            <div id="gate" class="relative" style="transform: translate3d(375px, -70px, 16px)">
+              <s-cube
+                :xl="50"
+                :yl="10"
+                :zl="20"
+                :x="0"
+                :y="16"
+                :z="10"
+              >
+                <template v-for="name in ['bottom', 'front', 'back', 'left', 'right', 'top']" #[name]>
+                  <div style="width: 100%; height: 100%; background: #333; border: 0.5px solid #666;"></div>
+                </template>
+              </s-cube>
+              <s-cube
+                :xl="50"
+                :yl="10"
+                :zl="20"
+                :x="0"
+                :y="-16"
+                :z="10"
+              >
+                <template v-for="name in ['bottom', 'front', 'back', 'left', 'right', 'top']" #[name]>
+                  <div style="width: 100%; height: 100%; background: #333; border: 0.5px solid #666;"></div>
+                </template>
+              </s-cube>
+              <s-cube
+                :xl="20"
+                :yl="0"
+                :zl="8"
+                :x="-9"
+                :y="-10.9999999"
+                :z="10"
+                :deg-z="gateOpen ? 0 : -80"
+              >
+                <template #front>
+                  <div style="width: 10px; height: 8px; background: #009900"></div>
+                </template>
+              </s-cube>
+              <s-cube
+                :xl="20"
+                :yl="0"
+                :zl="8"
+                :x="-9"
+                :y="10.9999999"
+                :z="10"
+                :deg-z="gateOpen ? 0 : 80"
+              >
+                <template #front>
+                  <div style="width: 10px; height: 8px; background: #009900"></div>
+                </template>
+              </s-cube>
+              <s-cube
+                :xl="20"
+                :yl="0"
+                :zl="8"
+                :x="9"
+                :y="-10.9999999"
+                :z="10"
+              >
+                <template #front>
+                  <div style="margin-left: 10px; width: 10px; height: 8px; background: #009900"></div>
+                </template>
+              </s-cube>
+              <s-cube
+                :xl="20"
+                :yl="0"
+                :zl="8"
+                :x="9"
+                :y="10.9999999"
+                :z="10"
+              >
+                <template #front>
+                  <div style="margin-left: 10px; width: 10px; height: 8px; background: #009900"></div>
+                </template>
+              </s-cube>
+            </div>
           </div>
         </div>
       </div>
@@ -288,6 +364,12 @@
             <input type="color" v-model="lineColor">
             ラインカラー
           </label>
+          <div>
+            <label>
+              <input type="checkbox" v-model="gateOpen">
+              改札
+            </label>
+          </div>
         </div>
         <div style="width: 165px">
           <textarea v-model="announceText" style="height: 4em;">

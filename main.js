@@ -273,16 +273,20 @@ const SCube = {
     zl: {
       type: Number,
       default: 0
+    },
+    degZ: {
+      type: Number,
+      default: 0
     }
   },
   template: `
     <div style="transform-style: preserve-3d;">
-      <div :style="{position: 'absolute', top: \`calc(50vh - \${yl/2}px)\`, left: \`calc(50vw - \${xl/2}px)\`, width: \`\${xl}px\`, height: \`\${yl}px\`, transform: \`translate3d(\${x}px, \${y}px, \${z}px) rotateY(  0deg)                 translateZ(\${zl/2}px)\`}"><slot name="top"/></div>
-      <div :style="{position: 'absolute', top: \`calc(50vh - \${yl/2}px)\`, left: \`calc(50vw - \${xl/2}px)\`, width: \`\${xl}px\`, height: \`\${yl}px\`, transform: \`translate3d(\${x}px, \${y}px, \${z}px) rotateY(180deg)                 translateZ(\${zl/2}px)\`}"><slot name="bottom"/></div>
-      <div :style="{position: 'absolute', top: \`calc(50vh - \${zl/2}px)\`, left: \`calc(50vw - \${xl/2}px)\`, width: \`\${xl}px\`, height: \`\${zl}px\`, transform: \`translate3d(\${x}px, \${y}px, \${z}px) rotateX(-90deg)                 translateZ(\${yl/2}px)\`}"><slot name="front"/></div>
-      <div :style="{position: 'absolute', top: \`calc(50vh - \${zl/2}px)\`, left: \`calc(50vw - \${xl/2}px)\`, width: \`\${xl}px\`, height: \`\${zl}px\`, transform: \`translate3d(\${x}px, \${y}px, \${z}px) rotateX(-90deg) rotateY(180deg) translateZ(\${yl/2}px)\`}"><slot name="back"/></div>
-      <div :style="{position: 'absolute', top: \`calc(50vh - \${zl/2}px)\`, left: \`calc(50vw - \${yl/2}px)\`, width: \`\${yl}px\`, height: \`\${zl}px\`, transform: \`translate3d(\${x}px, \${y}px, \${z}px) rotateX(-90deg) rotateY( 90deg) translateZ(\${xl/2}px)\`}"><slot name="right"/></div>
-      <div :style="{position: 'absolute', top: \`calc(50vh - \${zl/2}px)\`, left: \`calc(50vw - \${yl/2}px)\`, width: \`\${yl}px\`, height: \`\${zl}px\`, transform: \`translate3d(\${x}px, \${y}px, \${z}px) rotateX(-90deg) rotateY(-90deg) translateZ(\${xl/2}px)\`}"><slot name="left"/></div>
+      <div class="transition-03s" :style="{position: 'absolute', top: \`calc(50vh - \${yl/2}px)\`, left: \`calc(50vw - \${xl/2}px)\`, width: \`\${xl}px\`, height: \`\${yl}px\`, transform: \`translate3d(\${x}px, \${y}px, \${z}px) rotateZ(\${degZ}deg) rotateY(  0deg)                 translateZ(\${zl/2}px)\`}"><slot name="top"/></div>
+      <div class="transition-03s" :style="{position: 'absolute', top: \`calc(50vh - \${yl/2}px)\`, left: \`calc(50vw - \${xl/2}px)\`, width: \`\${xl}px\`, height: \`\${yl}px\`, transform: \`translate3d(\${x}px, \${y}px, \${z}px) rotateZ(\${degZ}deg) rotateY(180deg)                 translateZ(\${zl/2}px)\`}"><slot name="bottom"/></div>
+      <div class="transition-03s" :style="{position: 'absolute', top: \`calc(50vh - \${zl/2}px)\`, left: \`calc(50vw - \${xl/2}px)\`, width: \`\${xl}px\`, height: \`\${zl}px\`, transform: \`translate3d(\${x}px, \${y}px, \${z}px) rotateZ(\${degZ}deg) rotateX(-90deg)                 translateZ(\${yl/2}px)\`}"><slot name="front"/></div>
+      <div class="transition-03s" :style="{position: 'absolute', top: \`calc(50vh - \${zl/2}px)\`, left: \`calc(50vw - \${xl/2}px)\`, width: \`\${xl}px\`, height: \`\${zl}px\`, transform: \`translate3d(\${x}px, \${y}px, \${z}px) rotateZ(\${degZ}deg) rotateX(-90deg) rotateY(180deg) translateZ(\${yl/2}px)\`}"><slot name="back"/></div>
+      <div class="transition-03s" :style="{position: 'absolute', top: \`calc(50vh - \${zl/2}px)\`, left: \`calc(50vw - \${yl/2}px)\`, width: \`\${yl}px\`, height: \`\${zl}px\`, transform: \`translate3d(\${x}px, \${y}px, \${z}px) rotateZ(\${degZ}deg) rotateX(-90deg) rotateY( 90deg) translateZ(\${xl/2}px)\`}"><slot name="right"/></div>
+      <div class="transition-03s" :style="{position: 'absolute', top: \`calc(50vh - \${zl/2}px)\`, left: \`calc(50vw - \${yl/2}px)\`, width: \`\${yl}px\`, height: \`\${zl}px\`, transform: \`translate3d(\${x}px, \${y}px, \${z}px) rotateZ(\${degZ}deg) rotateX(-90deg) rotateY(-90deg) translateZ(\${xl/2}px)\`}"><slot name="left"/></div>
     </div>
   `
 }
@@ -526,6 +530,8 @@ const App = {
       announceText.value = generateAnnounce()
     }
 
+    const gateOpen = ref(true)
+
     return {
       cameraDeg,
       cameraDeg2,
@@ -542,7 +548,8 @@ const App = {
       playAnnounce,
       stopAnnounce,
       randomAnnounce,
-      cameraTransform
+      cameraTransform,
+      gateOpen
     }
   }
 }
