@@ -38,7 +38,7 @@ const numberColors = {
   JK: '#00A7E3',
   JH: '#85C023',
   JN: '#FFE400',
-  JH: '#FFE500',
+  JI: '#FFE500',
   JY: '#85C023',
   JC: '#EB5C01',
   JB: '#FFE500',
