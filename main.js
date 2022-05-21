@@ -5,7 +5,7 @@ const generateAnnounce = () => {
 
   const messages = [
     `まもなく、${trackNumber}番線に、通勤快速、成東ゆきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。この列車は、10両です。`,
-    `まもなく、${trackNumber}番線に、快速、蘇我いききが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。この列車は、10両です。`,
+    `まもなく、${trackNumber}番線に、快速、蘇我ゆきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。この列車は、10両です。`,
     `まもなく、${trackNumber}番線に、東京、上野方面ゆきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。次は、高輪ゲートウェイ、に止まります。`,
     `まもなく、${trackNumber}番線に、新宿、渋谷方面ゆきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。次は、新宿、に止まります。`,
     `まもなく、${trackNumber}番線に、各駅停車、桜木町ゆきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。`,
@@ -25,6 +25,7 @@ const generateAnnounce = () => {
     `まもなく、${trackNumber}番線に、久里浜ゆきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。この電車は、11両です。`,
     `まもなく、${trackNumber}番線に、快速、君津ゆきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。この電車は、15両です。`,
     `まもなく、${trackNumber}番線に、快速、成田空港、成東ゆきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。この電車は、15両です。`,
+    `まもなく、${trackNumber}番線に、府中本町いきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。`,
     `Your attention please. The rapid train, bound for, Kazusa-Ichinomiya, is arriving at, track ${trackNumber}. Please stand behind the yellow warning blocks.`,
     `Your attention please. The local train, bound for, Odawara, is arriving at, track ${trackNumber}. Please stand behind the yellow warning blocks.`
   ]
