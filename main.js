@@ -467,7 +467,7 @@ const SClock = {
       >
         {{ i }}
       </div>
-      <div class="absolute parent-fit" :style="{ transform: \`translateZ(3px) rotateZ(\${minute * 6}deg)\` }">
+      <div class="absolute parent-fit" :style="{ transform: \`translateZ(2.5px) rotateZ(\${minute * 6}deg)\` }">
         <div class="absolute" style="background: rgb(216, 250, 139);top: 10px; left: calc(50% - 2px); width: 4px; height: 52px;"></div>
       </div>
       <div class="absolute parent-fit" :style="{ transform: \`translateZ(2px) rotateZ(\${(hour * 30) + (minute / 2)}deg)\` }">
