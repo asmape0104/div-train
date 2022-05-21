@@ -33,45 +33,183 @@ const generateAnnounce = () => {
 }
 
 const numberColors = {
-  JT: '#FF9845',
-  JO: '#0074BE',
-  JK: '#00A7E3',
-  JH: '#85C023',
-  JN: '#FFE400',
-  JI: '#FFE500',
-  JY: '#85C023',
-  JC: '#EB5C01',
-  JB: '#FFE500',
-  JU: '#FF9845',
-  JA: '#00AC84',
-  JJ: '#00C18A',
-  JL: '#9E9E9F',
-  JE: '#CF1225',
-  JM: '#EB5C01',
-  JS: '#DE0515',
-  CO: '#0071C5',
-  G: 'rgb(242, 153, 56)',
-  Z: 'rgb(139, 122, 208)',
-  C: 'rgb(83, 184, 138)',
-  N: 'rgb(76, 171, 157)',
-  H: 'rgb(182, 182, 174)',
-  M: 'rgb(227, 64, 61)',
-  Mb: 'rgb(227, 64, 61)',
-  T: 'rgb(66, 155, 188)',
-  Y: 'rgb(191, 165, 118)',
-  F: 'rgb(150, 96, 54)',
-  E: '#ce045b',
-  S: '#b0bf1e',
-  I: '#006ab8',
-  A: '#ec6e65',
-  R: 'rgb(153, 199, 195)',
-  TS: 'rgb(53, 108, 179)',
-  TI: 'rgb(213, 56, 43)',
-  TN: 'rgb(235, 165, 58)',
-  TD: 'rgb(96, 178, 224)',
-  TJ: 'rgb(29, 67, 137)',
-  IZ: 'rgb(179, 169, 167)'
+  JT: {
+    borderColor: '#FF9845',
+  },
+  JO: {
+    borderColor: '#0074BE',
+  },
+  JK: {
+    borderColor: '#00A7E3',
+  },
+  JH: {
+    borderColor: '#85C023',
+  },
+  JN: {
+    borderColor: '#FFE400',
+  },
+  JI: {
+    borderColor: '#FFE500',
+  },
+  JY: {
+    borderColor: '#85C023',
+  },
+  JC: {
+    borderColor: '#EB5C01',
+  },
+  JB: {
+    borderColor: '#FFE500',
+  },
+  JU: {
+    borderColor: '#FF9845',
+  },
+  JA: {
+    borderColor: '#00AC84',
+  },
+  JJ: {
+    borderColor: '#00C18A',
+  },
+  JL: {
+    borderColor: '#9E9E9F',
+  },
+  JE: {
+    borderColor: '#CF1225',
+  },
+  JM: {
+    borderColor: '#EB5C01',
+  },
+  JS: {
+    borderColor: '#DE0515',
+  },
+  CO: {
+    borderColor: '#0071C5',
+  },
+  G: {
+    borderColor: 'rgb(242, 153, 56)',
+    borderRadius: '9999px'
+  },
+  Z: {
+    borderColor: 'rgb(139, 122, 208)',
+    borderRadius: '9999px'
+  },
+  C: {
+    borderColor: 'rgb(83, 184, 138)',
+    borderRadius: '9999px'
+  },
+  N: {
+    borderColor: 'rgb(76, 171, 157)',
+    borderRadius: '9999px'
+  },
+  H: {
+    borderColor: 'rgb(182, 182, 174)',
+    borderRadius: '9999px'
+  },
+  M: {
+    borderColor: 'rgb(227, 64, 61)',
+    borderRadius: '9999px'
+  },
+  Mb: {
+    borderColor: 'rgb(227, 64, 61)',
+    borderRadius: '9999px'
+  },
+  T: {
+    borderColor: 'rgb(66, 155, 188)',
+    borderRadius: '9999px'
+  },
+  Y: {
+    borderColor: 'rgb(191, 165, 118)',
+    borderRadius: '9999px'
+  },
+  F: {
+    borderColor: 'rgb(150, 96, 54)',
+    borderRadius: '9999px'
+  },
+  E: {
+    borderColor: '#ce045b',
+    borderRadius: '9999px'
+  },
+  S: {
+    borderColor: '#b0bf1e',
+    borderRadius: '9999px'
+  },
+  I: {
+    borderColor: '#006ab8',
+    borderRadius: '9999px'
+  },
+  A: {
+    borderColor: '#ec6e65',
+    borderRadius: '9999px'
+  },
+  R: {
+    borderColor: 'rgb(153, 199, 195)',
+    background: 'rgb(21, 55, 130)',
+    color: 'white',
+    borderRadius: '9999px'
+  },
+  TS: {
+    borderColor: 'rgb(53, 108, 179)',
+  },
+  TI: {
+    borderColor: 'rgb(213, 56, 43)',
+  },
+  TN: {
+    borderColor: 'rgb(235, 165, 58)',
+  },
+  TD: {
+    borderColor: 'rgb(96, 178, 224)',
+  },
+  TJ: {
+    borderColor: 'rgb(29, 67, 137)',
+  },
+  IZ: {
+    borderColor: 'rgb(179, 169, 167)'
+  },
+  SR: {
+    borderColor: 'rgb(66, 103, 171)',
+    borderRadius: '9999px'
+  },
+  TY: {
+    borderColor: 'rgb(202, 42, 70)',
+    background: 'rgb(202, 42, 70)',
+    color: 'white'
+  },
+  MG: {
+    borderColor: 'rgb(65, 155, 206)',
+    background: 'rgb(65, 155, 206)',
+    color: 'white'
+  },
+  DT: {
+    borderColor: 'rgb(75, 167, 143)',
+    background: 'rgb(75, 167, 143)',
+    color: 'white'
+  },
+  OM: {
+    borderColor: 'rgb(228, 144, 82)',
+    background: 'rgb(228, 144, 82)',
+    color: 'white'
+  },
+  IK: {
+    borderColor: 'rgb(224, 139, 166)',
+    background: 'rgb(224, 139, 166)',
+    color: 'white'
+  },
+  TM: {
+    borderColor: 'rgb(159, 25, 118)',
+    background: 'rgb(159, 25, 118)',
+    color: 'white'
+  },
+  SG: {
+    borderColor: 'rgb(245, 200, 68)',
+    background: 'rgb(202, 42, 70)',
+    color: 'rgb(89, 87, 87)'
+  },
+  KD: {
+    borderColor: 'rgb(44, 113, 184)',
+    background: 'rgb(44, 113, 184)',
+    color: 'white'
+  },
 }
+
 
 const EditDiv = {
   props: {
@@ -226,36 +364,16 @@ const SLcd = {
     }
   },
   setup() {
-    const colors = ref([
-      {
-        text: 'JK',
-        color: numberColors['JK'],
-        circle: false
-      },
-      {
-        text: 'JK',
-        color: numberColors['JK'],
-        circle: false
-      },
-      {
-        text: 'JK',
-        color: numberColors['JK'],
-        circle: false
-      },
-    ])
+    const colors = ref([numberColors['JK'], numberColors['JK'], numberColors['JK']])
     const numberStyles = computed(() => colors.value.map(c => ({
-      borderColor: c.color,
-      borderRadius: c.circle ? '9999px' : '4px',
-      background: c.text === 'R' ? 'rgb(21, 55, 130)' : 'white',
-      color: c.text === 'R' ? 'white' : 'black'
+      borderColor: c.borderColor,
+      borderRadius: c.borderRadius || '4px',
+      background: c.background || 'white',
+      color: c.color || 'black'
     })))
     const updateColor = (i, newText) => {
       if (numberColors[newText]) {
-        colors.value.splice(i, 1, {
-          text: newText,
-          color: numberColors[newText],
-          circle: newText.length === 1 || newText === 'Mb'
-        })
+        colors.value.splice(i, 1, numberColors[newText])
       }
     }
 
