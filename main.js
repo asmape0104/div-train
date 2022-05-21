@@ -208,6 +208,12 @@ const numberColors = {
     background: 'rgb(44, 113, 184)',
     color: 'white'
   },
+  MM: {
+    borderColor: 'white',
+    borderWidth: '1px',
+    background: 'rgb(36, 85, 155)',
+    color: 'white'
+  }
 }
 
 
@@ -368,6 +374,7 @@ const SLcd = {
     const numberStyles = computed(() => colors.value.map(c => ({
       borderColor: c.borderColor,
       borderRadius: c.borderRadius || '4px',
+      borderWidth: c.borderWidth || '3px',
       background: c.background || 'white',
       color: c.color || 'black'
     })))
