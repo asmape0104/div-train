@@ -200,7 +200,7 @@ const numberColors = {
   },
   SG: {
     borderColor: 'rgb(245, 200, 68)',
-    background: 'rgb(202, 42, 70)',
+    background: 'rgb(245, 200, 68)',
     color: 'rgb(89, 87, 87)'
   },
   KD: {
