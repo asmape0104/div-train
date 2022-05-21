@@ -32,6 +32,77 @@ const generateAnnounce = () => {
   return messages[Math.floor(Math.random() * messages.length)]
 }
 
+const numberColors = {
+  JT: '#FF9845',
+  JO: '#0074BE',
+  JK: '#00A7E3',
+  JH: '#85C023',
+  JN: '#FFE400',
+  JH: '#FFE500',
+  JY: '#85C023',
+  JC: '#EB5C01',
+  JB: '#FFE500',
+  JU: '#FF9845',
+  JA: '#00AC84',
+  JJ: '#00C18A',
+  JL: '#9E9E9F',
+  JE: '#CF1225',
+  JM: '#EB5C01',
+  JS: '#DE0515',
+  CO: '#0071C5',
+  G: 'rgb(242, 153, 56)',
+  Z: 'rgb(139, 122, 208)',
+  C: 'rgb(83, 184, 138)',
+  N: 'rgb(76, 171, 157)',
+  H: 'rgb(182, 182, 174)',
+  M: 'rgb(227, 64, 61)',
+  Mb: 'rgb(227, 64, 61)',
+  T: 'rgb(66, 155, 188)',
+  Y: 'rgb(191, 165, 118)',
+  F: 'rgb(150, 96, 54)',
+  E: '#ce045b',
+  S: '#b0bf1e',
+  I: '#006ab8',
+  A: '#ec6e65',
+  R: 'rgb(153, 199, 195)',
+  TS: 'rgb(53, 108, 179)',
+  TI: 'rgb(213, 56, 43)',
+  TN: 'rgb(235, 165, 58)',
+  TD: 'rgb(96, 178, 224)',
+  TJ: 'rgb(29, 67, 137)',
+  IZ: 'rgb(179, 169, 167)'
+}
+
+const EditDiv = {
+  props: {
+    text: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { emit }) {
+    const innerText = ref(props.text)
+    
+    const changeText = () => {
+      const newText = window.prompt('テキスト変更', innerText.value)
+
+      if (newText) {
+        innerText.value = newText
+        emit('update', newText)
+      }
+    }
+
+    return {
+      innerText,
+      changeText
+    }
+  },
+  template: `
+    <div @click="changeText">{{ innerText }}</div>
+  `
+}
+
+
 const SCube = {
   props: {
     x: {
@@ -145,10 +216,53 @@ const SWindow = {
 }
 
 const SLcd = {
+  components: {
+    EditDiv
+  },
   props: {
     reverse: {
       type: Boolean,
       default: false
+    }
+  },
+  setup() {
+    const colors = ref([
+      {
+        text: 'JK',
+        color: numberColors['JK'],
+        circle: false
+      },
+      {
+        text: 'JK',
+        color: numberColors['JK'],
+        circle: false
+      },
+      {
+        text: 'JK',
+        color: numberColors['JK'],
+        circle: false
+      },
+    ])
+    const numberStyles = computed(() => colors.value.map(c => ({
+      borderColor: c.color,
+      borderRadius: c.circle ? '9999px' : '4px',
+      background: c.text === 'R' ? 'rgb(21, 55, 130)' : 'white',
+      color: c.text === 'R' ? 'white' : 'black'
+    })))
+    const updateColor = (i, newText) => {
+      if (numberColors[newText]) {
+        colors.value.splice(i, 1, {
+          text: newText,
+          color: numberColors[newText],
+          circle: newText.length === 1 || newText === 'Mb'
+        })
+      }
+    }
+
+    return {
+      colors,
+      numberStyles,
+      updateColor
     }
   },
   template: `
@@ -156,37 +270,37 @@ const SLcd = {
     <div class="lcd-left">
       <div class="lcd-left-row row-colored">
         <div class="line">
-          <div class="jk-icon">JK</div>
-          <div class="line-name">京浜東北線</div>
+          <edit-div class="jk-icon" text="JK" :style="numberStyles[0]" @update="updateColor(0, $event)"></edit-div>
+          <edit-div class="line-name" text="京浜東北線"></edit-div>
         </div>
-        <div class="forward">横浜・関内方面</div>
+        <edit-div class="forward" text="横浜・関内方面"></edit-div>
       </div>
       <div class="lcd-sep"></div>
       <div class="lcd-left-row">
-        <div class="type">各駅停車</div>
-        <div class="time">13:10</div>
+        <edit-div class="type" text="各駅停車"></edit-div>
+        <edit-div class="time" text="13:10"></edit-div>
         <div class="for">
-          <div class="jk-icon-small">
-            <div class="jk-text">JK</div>
-            <div class="jk-number">01</div>
+          <div class="jk-icon-small" :style="numberStyles[1]">
+          <edit-div class="jk-text" text="JK" @update="updateColor(1, $event)"></edit-div>
+          <edit-div class="jk-number" text="01"></edit-div>
           </div>
-          <div class="for-text">大船</div>
+          <edit-div class="for-text" text="大船"></edit-div>
         </div>
       </div>
       <div class="lcd-sep"></div>
       <div class="lcd-left-row">
-        <div class="type">各駅停車</div>
-        <div class="time">13:15</div>
+        <edit-div class="type" text="各駅停車"></edit-div>
+        <edit-div class="time" text="13:15"></edit-div>
         <div class="for">
-          <div class="jk-icon-small">
-            <div class="jk-text">JK</div>
-            <div class="jk-number">06</div>
+          <div class="jk-icon-small" :style="numberStyles[2]">
+            <edit-div class="jk-text" text="JK" @update="updateColor(2, $event)"></edit-div>
+            <edit-div class="jk-number" text="06"></edit-div>
           </div>
-          <div class="for-text">磯子</div>
+          <edit-div class="for-text" text="磯子"></edit-div>
         </div>
       </div>
     </div>
-    <div class="lcd-right" :class="{reverse: reverse}">3</div>
+    <edit-div class="lcd-right" :class="{reverse: reverse}" text="3"></edit-div>
   </div>
   `
 }
