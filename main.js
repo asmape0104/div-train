@@ -163,7 +163,8 @@ const numberColors = {
     borderColor: 'rgb(29, 67, 137)',
   },
   IZ: {
-    borderColor: 'rgb(179, 169, 167)'
+    borderColor: 'rgb(179, 169, 167)',
+    borderWidth: '1px',
   },
   SR: {
     borderColor: 'rgb(66, 103, 171)',
@@ -229,6 +230,71 @@ const numberColors = {
   TR: {
     borderColor: 'rgb(115, 178, 71)',
     borderRadius: '9999px'
+  },
+  KO: {
+    borderColor: 'rgb(186, 42, 119)',
+    subBackground: 'linear-gradient(rgb(186, 42, 119), rgb(186, 42, 119) 42.5%, white 42.5%, white 100%)',
+    subColor: ['white', 'black'],
+    borderRadius: '9999px',
+    borderWidth: '2px',
+    color: 'rgb(186, 42, 119)'
+  },
+  IN: {
+    borderColor: 'rgb(24, 55, 113)',
+    subBackground: 'linear-gradient(rgb(24, 55, 113), rgb(24, 55, 113) 42.5%, white 42.5%, white 100%)',
+    subColor: ['white', 'black'],
+    borderRadius: '9999px',
+    borderWidth: '2px',
+    color: 'rgb(24, 55, 113)'
+  },
+  SO: {
+    borderColor: 'rgb(40, 106, 177)',
+    subBackground: 'rgb(40, 106, 177)',
+    color: 'white',
+    subBorder: 'rgb(233, 163, 53)'
+  },
+  SI: {
+    borderColor: '#EE7A00',
+    subBackground: 'linear-gradient(#EE7A00, #EE7A00 42.5%, white 42.5%, white 100%)',
+    subColor: ['white', 'black'],
+    borderWidth: '2px',
+  },
+  SS: {
+    borderColor: '#00A6BF',
+    subBackground: 'linear-gradient(#00A6BF, #00A6BF 42.5%, white 42.5%, white 100%)',
+    subColor: ['white', 'black'],
+    borderWidth: '2px',
+  },
+  ST: {
+    borderColor: '#F7AF0E',
+    subBackground: 'linear-gradient(#F7AF0E, #F7AF0E 42.5%, white 42.5%, white 100%)',
+    subColor: ['white', 'black'],
+    borderWidth: '2px',
+  },
+  SK: {
+    borderColor: '#1EAD4C',
+    subBackground: 'linear-gradient(#1EAD4C, #1EAD4C 42.5%, white 42.5%, white 100%)',
+    subColor: ['white', 'black'],
+    borderWidth: '2px',
+  },
+  SY: {
+    borderColor: '#E83E2F',
+    subBackground: 'linear-gradient(#E83E2F, #E83E2F 42.5%, white 42.5%, white 100%)',
+    subColor: ['white', 'black'],
+    borderWidth: '2px',
+  },
+  SW: {
+    borderColor: '#EF7A00',
+    subBackground: 'linear-gradient(#EF7A00, #EF7A00 42.5%, white 42.5%, white 100%)',
+    subColor: ['white', 'black'],
+    borderWidth: '2px',
+  },
+  CA: {
+    borderColor: '#FF7E1C',
+    subBackground: 'linear-gradient(#FF7E1C, #FF7E1C 42.5%, white 42.5%, white 100%)',
+    subColor: ['white', 'black'],
+    borderRadius: '0px',
+    borderWidth: '1px',
   },
 }
 
@@ -393,11 +459,11 @@ const SLcd = {
   },
   setup() {
     const colors = ref([numberColors['JK'], numberColors['JK'], numberColors['JK']])
-    const numberStyles = computed(() => colors.value.map(c => ({
+    const numberStyles = computed(() => colors.value.map((c, i) => ({
       borderColor: c.borderColor,
       borderRadius: c.borderRadius || '4px',
       borderWidth: c.borderWidth || '3px',
-      background: c.background || 'white',
+      background: (i === 0 ? c.background : c.subBackground || c.background) || 'white',
       color: c.color || 'black'
     })))
     const updateColor = (i, newText) => {
@@ -430,8 +496,8 @@ const SLcd = {
         <edit-div class="time" text="13:10"></edit-div>
         <div class="for">
           <div class="jk-icon-small" :style="numberStyles[1]">
-          <edit-div class="jk-text" text="JK" @update="updateColor(1, $event)"></edit-div>
-          <edit-div class="jk-number" text="01"></edit-div>
+          <edit-div :style="{color: colors[1].subColor?.[0]}" class="jk-text" text="JK" @update="updateColor(1, $event)"></edit-div>
+          <edit-div :style="{color: colors[1].subColor?.[1], borderTop: colors[1].subBorder ? \`1px solid \${colors[1].subBorder}\` : null}" class="jk-number" text="01"></edit-div>
           </div>
           <edit-div class="for-text" text="大船"></edit-div>
         </div>
@@ -442,8 +508,8 @@ const SLcd = {
         <edit-div class="time" text="13:15"></edit-div>
         <div class="for">
           <div class="jk-icon-small" :style="numberStyles[2]">
-            <edit-div class="jk-text" text="JK" @update="updateColor(2, $event)"></edit-div>
-            <edit-div class="jk-number" text="06"></edit-div>
+            <edit-div :style="{color: colors[2].subColor?.[0]}" class="jk-text" text="JK" @update="updateColor(2, $event)"></edit-div>
+            <edit-div :style="{color: colors[2].subColor?.[1], borderTop: colors[2].subBorder ? \`1px solid \${colors[1].subBorder}\` : null}" class="jk-number" text="06"></edit-div>
           </div>
           <edit-div class="for-text" text="磯子"></edit-div>
         </div>
