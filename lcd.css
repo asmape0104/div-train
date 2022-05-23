@@ -44,10 +44,12 @@
   width: 24px;
   height: 24px;
   text-align: center;
-  line-height: 18px;
   border: #00bae8 solid 3px;
   border-radius: 4px;
   margin-right: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .jk-icon-small {

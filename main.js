@@ -25,9 +25,9 @@ const generateAnnounce = () => {
     `まもなく、${trackNumber}番線に、久里浜ゆきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。この電車は、11両です。`,
     `まもなく、${trackNumber}番線に、快速、君津ゆきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。この電車は、15両です。`,
     `まもなく、${trackNumber}番線に、快速、成田空港、成東ゆきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。この電車は、15両です。`,
-    `まもなく、${trackNumber}番線に、府中本町いきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。`,
-    `Your attention please. The rapid train, bound for, Kazusa-Ichinomiya, is arriving at, track ${trackNumber}. Please stand behind the yellow warning blocks.`,
-    `Your attention please. The local train, bound for, Odawara, is arriving at, track ${trackNumber}. Please stand behind the yellow warning blocks.`
+    `まもなく、${trackNumber}番線に、府中本町ゆきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。`,
+    `Your attention please. The rapid train, bound for, Kazusa-Ichinomiya, is arriving at, track ${trackNumber}. For your safety, please stand behind the yellow warning blocks.`,
+    `Your attention please. The local train, bound for, Odawara, is arriving at, track ${trackNumber}. For your safety, please stand behind the yellow warning blocks.`
   ]
 
   return messages[Math.floor(Math.random() * messages.length)]
@@ -214,7 +214,22 @@ const numberColors = {
     borderWidth: '1px',
     background: 'rgb(36, 85, 155)',
     color: 'white'
-  }
+  },
+  B: {
+    borderColor: 'rgb(42, 112, 186)',
+    background: 'rgb(42, 112, 186)',
+    color: 'white',
+    borderRadius: '9999px'
+  },
+  KK: {
+    borderColor: 'rgb(78, 178, 270)',
+    color: 'rgb(32, 46, 96)',
+    borderRadius: '9999px'
+  },
+  TR: {
+    borderColor: 'rgb(115, 178, 71)',
+    borderRadius: '9999px'
+  },
 }
 
 
@@ -400,7 +415,9 @@ const SLcd = {
     <div class="lcd-left">
       <div class="lcd-left-row row-colored">
         <div class="line">
-          <edit-div class="jk-icon" text="JK" :style="numberStyles[0]" @update="updateColor(0, $event)"></edit-div>
+          <div class="jk-icon" :style="numberStyles[0]">
+            <edit-div class="jk-icon-text" text="JK" @update="updateColor(0, $event)"></edit-div>
+          </div>
           <edit-div class="line-name" text="京浜東北線"></edit-div>
         </div>
         <edit-div class="forward" text="横浜・関内方面"></edit-div>
@@ -493,12 +510,15 @@ const App = {
     const cameraDeg = ref(-20)
     const cameraDeg2 = ref(80)
     const cameraScale = ref(1)
+    const cameraX = ref(0)
+    const cameraY = ref(0)
+    const cameraZ = ref(0)
     const trainPos = ref(0)
 
     const frontDoorOpen = ref(false)
     const backDoorOpen = ref(false)
     const lineColor = ref('#ff0000')
-    const cameraTransform = computed(() => `scale3d(${cameraScale.value}, ${cameraScale.value}, ${cameraScale.value}) rotateX(${cameraDeg2.value}deg) rotateZ(${cameraDeg.value}deg)`)
+    const cameraTransform = computed(() => `scale3d(${cameraScale.value}, ${cameraScale.value}, ${cameraScale.value}) rotateX(${cameraDeg2.value}deg) rotateZ(${cameraDeg.value}deg) translate3d(${cameraX.value}px, ${cameraY.value}px, ${cameraZ.value}px)`)
 
     const voices = ref(window.speechSynthesis.getVoices())
     const selectedVoiceName = ref('')
@@ -532,10 +552,42 @@ const App = {
 
     const gateOpen = ref(true)
 
+    const cameraMove = (x, y, z) => {
+      cameraX.value += x * -Math.cos(cameraDeg.value * Math.PI / 180)
+      cameraY.value += x * Math.sin(cameraDeg.value * Math.PI / 180)
+
+      cameraZ.value += y * Math.cos((90 - cameraDeg2.value) * Math.PI / 180)
+      cameraX.value += y * -Math.sin((90 - cameraDeg2.value) * Math.PI / 180) * Math.sin(cameraDeg.value * Math.PI / 180)
+      cameraY.value += y * -Math.sin((90 - cameraDeg2.value) * Math.PI / 180) * Math.cos(cameraDeg.value * Math.PI / 180)
+
+      cameraZ.value += z * -Math.sin((90 - cameraDeg2.value) * Math.PI / 180)
+      cameraX.value += z * -Math.cos((90 - cameraDeg2.value) * Math.PI / 180) * Math.sin(cameraDeg.value * Math.PI / 180)
+      cameraY.value += z * -Math.cos((90 - cameraDeg2.value) * Math.PI / 180) * Math.cos(cameraDeg.value * Math.PI / 180)
+
+
+      cameraX.value = Math.max(-500, Math.min(cameraX.value, 500))
+      cameraY.value = Math.max(-500, Math.min(cameraY.value, 500))
+      cameraZ.value = Math.max(-500, Math.min(cameraZ.value, 500))
+    }
+
+    VueUse.onKeyStroke('w', () => cameraMove(0, -10, 0))
+    VueUse.onKeyStroke('a', () => cameraMove(-10, 0, 0))
+    VueUse.onKeyStroke('d', () => cameraMove(10, 0, 0))
+    VueUse.onKeyStroke('s', () => cameraMove(0, 10, 0))
+    VueUse.onKeyStroke('z', () => { cameraScale.value *= 1.05 })
+    VueUse.onKeyStroke('x', () => { cameraScale.value /= 1.05 })
+    VueUse.onKeyStroke('q', () => { cameraDeg.value -= 5 })
+    VueUse.onKeyStroke('e', () => { cameraDeg.value += 5 })
+    VueUse.onKeyStroke('r', () => { cameraDeg2.value = Math.max(0, cameraDeg2.value - 5) })
+    VueUse.onKeyStroke('f', () => { cameraDeg2.value = Math.min(90, cameraDeg2.value + 5) })
+
     return {
       cameraDeg,
       cameraDeg2,
       cameraScale,
+      cameraX,
+      cameraY,
+      cameraZ,
       trainPos,
       frontDoorOpen,
       backDoorOpen,
@@ -549,7 +601,8 @@ const App = {
       stopAnnounce,
       randomAnnounce,
       cameraTransform,
-      gateOpen
+      gateOpen,
+      cameraMove
     }
   }
 }

@@ -5,6 +5,8 @@
     <title>div要素だけで電車を作る</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/@vueuse/shared"></script>
+    <script src="https://unpkg.com/@vueuse/core"></script>
     <link rel="stylesheet" href="./main.css" />
     <link rel="stylesheet" href="./lcd.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -337,11 +339,21 @@
         <div>
           <div>
             カメラ<br>
-            <input type="range" min="-180" max="180" v-model.number="cameraDeg" /><br>
-            <input type="range" min="45" max="89" v-model.number="cameraDeg2" />
+            <input type="range" min="-180" max="180" v-model.number="cameraDeg" /> {{ cameraDeg }}<br>
+            <input type="range" min="0" max="90" v-model.number="cameraDeg2" /> {{ cameraDeg2 }}
           </div>
-          拡大率<br>
-          <input type="range" min="0.5" max="3" step="0.05" v-model.number="cameraScale" />
+          <div>
+            拡大率<br>
+            <input type="range" min="0.5" max="3" step="0.05" v-model.number="cameraScale" />
+          </div>
+          <div>
+            <button @click="cameraMove(-10, 0, 0)">←</button>
+            <button @click="cameraMove(10, 0, 0)">→</button>
+          </div>
+          <div>
+            <button @click="cameraMove(0, -10, 0)">↑</button>
+            <button @click="cameraMove(0, 10, 0)">↓</button>
+          </div>
         </div>
         <div>
           <div>
