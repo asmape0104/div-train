@@ -110,11 +110,12 @@ const useHID = () => {
   const devices = ref([null, null])
 
   const connectHID = async () => {
-    const device = await navigator.hid.requestDevice({
+    const device = (await navigator.hid.requestDevice({
       filters: [{
         vendorId: NintendoVendorId,
       }]
-    })[0]
+    }))[0]
+
     if (device) {
       devices.value.splice(device.productId === JoyConLProductId ? 0 : 1, 1, device)
       await device.open()
