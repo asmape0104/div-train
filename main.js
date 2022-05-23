@@ -1,4 +1,4 @@
-const { ref, computed, onMounted } = Vue
+const { ref, computed, onMounted, watch } = Vue
 
 const generateAnnounce = () => {
   const trackNumber = Math.floor(Math.random() ** 2.5 * 20) + 1
@@ -551,6 +551,13 @@ const App = {
     }
 
     const gateOpen = ref(true)
+    const gateAudio = ref(new Audio('./sound/gate.mp3'))
+    watch(gateOpen, () => {
+        if (gateOpen.value && enableSound.value) {
+          gateAudio.value.currentTime = 0
+          gateAudio.value.play()
+        }
+    })
 
     const cameraMove = (x, y, z) => {
       cameraX.value += x * -Math.cos(cameraDeg.value * Math.PI / 180)
@@ -569,6 +576,14 @@ const App = {
       cameraY.value = Math.max(-500, Math.min(cameraY.value, 500))
       cameraZ.value = Math.max(-500, Math.min(cameraZ.value, 500))
     }
+
+    const resetCamera = () => {
+      cameraX.value = 0;
+      cameraY.value = 0;
+      cameraZ.value = 0;
+    }
+
+    const enableSound = ref(false)
 
     VueUse.onKeyStroke('w', () => cameraMove(0, -10, 0))
     VueUse.onKeyStroke('a', () => cameraMove(-10, 0, 0))
@@ -602,7 +617,10 @@ const App = {
       randomAnnounce,
       cameraTransform,
       gateOpen,
-      cameraMove
+      gateAudio,
+      enableSound,
+      cameraMove,
+      resetCamera
     }
   }
 }

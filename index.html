@@ -346,13 +346,12 @@
             拡大率<br>
             <input type="range" min="0.5" max="3" step="0.05" v-model.number="cameraScale" />
           </div>
-          <div>
-            <button @click="cameraMove(-10, 0, 0)">←</button>
-            <button @click="cameraMove(10, 0, 0)">→</button>
-          </div>
-          <div>
-            <button @click="cameraMove(0, -10, 0)">↑</button>
-            <button @click="cameraMove(0, 10, 0)">↓</button>
+          <div class="grid">
+            <button style="grid-column-start: 1;grid-column-end: 2;grid-row-start: 2;grid-row-end: 3;" @click="cameraMove(-10, 0, 0)">←</button>
+            <button style="grid-column-start: 3;grid-column-end: 4;grid-row-start: 2;grid-row-end: 3;" @click="cameraMove(10, 0, 0)">→</button>
+            <button style="grid-column-start: 2;grid-column-end: 3;grid-row-start: 1;grid-row-end: 2;" @click="cameraMove(0, -10, 0)">↑</button>
+            <button style="grid-column-start: 2;grid-column-end: 3;grid-row-start: 3;grid-row-end: 4;" @click="cameraMove(0, 10, 0)">↓</button>
+            <button style="grid-column-start: 2;grid-column-end: 3;grid-row-start: 2;grid-row-end: 3;" @click="resetCamera">●</button>
           </div>
         </div>
         <div>
@@ -380,6 +379,12 @@
             <label>
               <input type="checkbox" v-model="gateOpen">
               改札
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" v-model="enableSound">
+              音声
             </label>
           </div>
         </div>
