@@ -313,8 +313,10 @@ const SDoor = {
       default: false
     }
   },
+  /**
+   * @param {{ isOpen: boolean; }} props
+   */
   setup(props) {
-    console.log(props.isOpen)
     const leftCss = computed(() => props.isOpen ? 'translate3d(-12px, 0, -0.5px)' : 'translate3d(0, 0, 0)')
     const rightCss = computed(() => props.isOpen ? 'translate3d(12px, 0, -0.5px)' : 'translate3d(0, 0, 0)')
 
@@ -596,6 +598,8 @@ const App = {
     VueUse.onKeyStroke('r', () => { cameraDeg2.value = Math.max(0, cameraDeg2.value - 5) })
     VueUse.onKeyStroke('f', () => { cameraDeg2.value = Math.min(90, cameraDeg2.value + 5) })
 
+    const { connectHID, devices } = useHID()
+
     return {
       cameraDeg,
       cameraDeg2,
@@ -620,7 +624,9 @@ const App = {
       gateAudio,
       enableSound,
       cameraMove,
-      resetCamera
+      resetCamera,
+      connectHID,
+      devices
     }
   }
 }
