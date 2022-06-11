@@ -249,7 +249,7 @@ const numberColors = {
   },
   SO: {
     borderColor: 'rgb(40, 106, 177)',
-    subBackground: 'rgb(40, 106, 177)',
+    background: 'rgb(40, 106, 177)',
     color: 'white',
     subBorder: 'rgb(233, 163, 53)'
   },
