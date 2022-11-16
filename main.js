@@ -601,7 +601,7 @@ const App = {
     const voiceNames = computed(() => voices.value.map(v => v.name))
     const voiceVolume = ref(0.9)
 
-    const announceText = ref('まもなく、1番線に、通勤快速、成東ゆきが、参ります。。危ないですから、黄色い点字ブロックまで、お下がりください。。この列車は、10両です。。')
+    const announceText = ref('まもなく、1番線に、通勤快速、成東ゆきが、参ります。危ないですから、黄色い点字ブロックまで、お下がりください。この列車は、10両です。')
     const playAnnounce = () => {
       window.speechSynthesis.cancel()
       const uttr = new SpeechSynthesisUtterance(announceText.value)
